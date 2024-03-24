@@ -1,22 +1,18 @@
 package com.akasharavinth.librarymanagement.models;
 
+import com.akasharavinth.librarymanagement.datalayer.LibraryDatamanagement;
+
 public class Book {
-    private static long id = 0;
+    private static long id = LibraryDatamanagement.getInstance().getBookList().size();
     private String bookName;
     private String bookAuthor;
     private String bookPublication;
     private static long bookId;
-    private String bookEdition;
+    private int noOfBooks;
     private boolean bookAvailability;
     private String bookJourner;
     private int bookVolume;
 
-    public long getId(){
-        return id;
-    }
-    public void setId(){
-        id++;
-    }
     public String getBookName() {
         return bookName;
     }
@@ -45,16 +41,16 @@ public class Book {
         return bookId;
     }
 
-    public void setBookId(long bookId) {
-        this.bookId = bookId;
+    public void setBookId() {
+        this.bookId = id++;
     }
 
-    public String getBookEdition() {
-        return bookEdition;
+    public int getNoOfBooks() {
+        return noOfBooks;
     }
 
-    public void setBookEdition(String bookEdition) {
-        this.bookEdition = bookEdition;
+    public void setNoOfBooks(int no) {
+        noOfBooks += no;
     }
 
     public boolean isBookAvailability() {

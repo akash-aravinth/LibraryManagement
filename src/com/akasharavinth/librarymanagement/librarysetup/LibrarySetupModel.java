@@ -27,7 +27,6 @@ public class LibrarySetupModel {
             return;
         }
 
-
         this.library = LibraryDatamanagement.getInstance().insertLibrary(library);
         librarySetupView.onSetupComplete(library);
     }

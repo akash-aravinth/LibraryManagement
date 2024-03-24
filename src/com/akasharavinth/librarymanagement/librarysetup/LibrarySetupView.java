@@ -1,11 +1,14 @@
 package com.akasharavinth.librarymanagement.librarysetup;
 
+import com.akasharavinth.librarymanagement.book.BookView;
 import com.akasharavinth.librarymanagement.datalayer.LibraryDatamanagement;
+import com.akasharavinth.librarymanagement.manageuser.UserView;
 import com.akasharavinth.librarymanagement.models.Library;
 
 import java.util.Scanner;
 
 public class LibrarySetupView {
+    Scanner scanner = new Scanner(System.in);
     private LibrarySetupModel librarySetupModel;
     public LibrarySetupView(){
         librarySetupModel = new LibrarySetupModel(this);
@@ -18,16 +21,24 @@ public class LibrarySetupView {
     public void onSetupComplete(Library library){
         System.out.println("\nLibrary setup completed\n");
         System.out.println("\nCurrent Library Name - " + library.getLibraryName());
-        Scanner scanner = new Scanner(System.in);
+        gettingChoices();
+    }
+
+    public void gettingChoices() {
         while (true){
             System.out.println(
-                    "\n 1. Add Book\n 2. Add user \n 3. Search Book \n 9. Logout \n 0. Exit \n Enter your Choice:");
+                    "\n 1. Manage Book\n 2. Manage user \n 3. Search Book \n 9. Logout \n 0. Exit \n Enter your Choice:");
             int choice = scanner.nextInt();
             switch (choice){
                 case 1 : {
-                    System.out.println("add Book");
+                    BookView bookView = new BookView();
+                    bookView.init();
                     break;
                 }
+                case 2 :
+                    UserView userView = new UserView();
+                    userView.init();
+                    break;
                 default:{
                     System.out.println("Default");
                     break;
@@ -55,7 +66,8 @@ public class LibrarySetupView {
     }
 
 
-    public void showAlert(String enterValidName) {
+    public void showAlert(String alert) {
+        System.out.println(alert);
     }
 
 }
